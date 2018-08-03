@@ -1,0 +1,18 @@
+server:
+  port: 8080
+#name: my name is july
+#age: 34
+#content: "name:${name},age:${age}"
+#student:
+#  name: my name is july
+#  age: 34
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    datasource:
+      url: jdbc:mysql://127.0.0.1:3306/RUNOOB?charterEncoding=UTF-8
+      username: root
+      password: hero0827
+
