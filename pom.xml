@@ -57,16 +57,35 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- mybatis -->
-		<dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.mybatis.spring.boot</groupId>-->
+			<!--<artifactId>mybatis-spring-boot-starter</artifactId>-->
+			<!--<version>1.1.1</version>-->
+		<!--</dependency>-->
+		<!-- mysql -->
+		<!--<dependency>-->
+			<!--<groupId>mysql</groupId>-->
+			<!--<artifactId>mysql-connector-java</artifactId>-->
+			<!--<version>5.1.21</version>-->
+		<!--</dependency>-->
+		<dependency> <!--添加Web依赖 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency> <!--添加Mybatis依赖 -->
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		<!-- mysql -->
-		<dependency>
+		<dependency><!--添加MySQL驱动依赖 -->
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.21</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency><!--添加Test依赖 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

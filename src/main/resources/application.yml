@@ -6,17 +6,33 @@ server:
 #student:
 #  name: my name is july
 #  age: 34
+#spring:
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/views/
+#      suffix: .jsp
+#    datasource:
+#      url: jdbc:mysql://127.0.0.1:3306/RUNOOB?charterEncoding=UTF-8
+#      username: root
+#      password: hero0827
+#      driver-class-name: com.mysql.jdbc.Driver
+#    jpa:
+#      hibernate:
+#        ddl-auto: update #新增数据库链接必备的参数
 spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/RUNOOB?charterEncoding=UTF-8
-      username: root
-      password: hero0827
-      driver-class-name: com.mysql.jdbc.Driver
-    jpa:
-      hibernate:
-        ddl-auto: update #新增数据库链接必备的参数
+  datasource:
+    #连接MySQL
+    url: jdbc:mysql://localhost:3306/RUNOOB?useSSL=false
+    username: root
+    password: mysql123
+    driver-class-name: com.mysql.jdbc.Driver
 
+mybatis:
+  configuration:
+   #配置项：开启下划线到驼峰的自动转换. 作用：将数据库字段根据驼峰规则自动注入到对象属性。
+   map-underscore-to-camel-case: true
+
+logging:
+  level:
+   #打印SQL信息
+   com.moco.sprintboot.mapper: debug
