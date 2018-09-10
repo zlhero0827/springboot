@@ -20,12 +20,19 @@ server:
 #      hibernate:
 #        ddl-auto: update #新增数据库链接必备的参数
 spring:
+  mvc:
+      view:
+        prefix: /WEB-INF/views/
+        suffix: .jsp
   datasource:
     #连接MySQL
     url: jdbc:mysql://localhost:3306/RUNOOB?useSSL=false
     username: root
     password: mysql123
     driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+    ddl-auto: update #新增数据库链接必备的参数
 
 mybatis:
   configuration:

@@ -7,6 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+        @Select("SELECT * FROM t_user")
+        List<User> findAll();
+
         /**
          * 方式1：使用注解编写SQL。
          */

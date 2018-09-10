@@ -1,5 +1,6 @@
 package com.moco.springboot.pojo;
 
+
 public class User {
     private String userId;
     private String username;
@@ -38,4 +39,5 @@ public class User {
     public void setMobileNum(String mobileNum) {
         this.mobileNum = mobileNum;
     }
+
 }
