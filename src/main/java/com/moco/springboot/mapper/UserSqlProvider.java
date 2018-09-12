@@ -2,8 +2,10 @@ package com.moco.springboot.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserSqlProvider {
+    @Autowired private UserMapper userMapper;
     /**
      * 方式1：在工具类的方法里,可以自己手工编写SQL。
      */
@@ -24,6 +26,10 @@ public class UserSqlProvider {
                 WHERE("1=2");
             }
         }}.toString();
+    }
+
+    public int add(String username, String password){
+        return userMapper.add(username,password);
     }
 
 }

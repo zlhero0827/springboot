@@ -61,4 +61,13 @@ public interface UserMapper {
         })
         User getBadUser(@Param("username") String username, @Param("password") String password);
 
+        /**
+         * 新增一条数据
+         * @param username
+         * @param password
+         * @return
+         */
+        @Insert("INSERT INTO t_user(username,password) VALUES (#{username},#{password})")
+        int add(@Param("username") String username, @Param("password") String password);
+
 }

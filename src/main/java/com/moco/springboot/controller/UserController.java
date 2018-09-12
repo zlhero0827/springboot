@@ -3,13 +3,15 @@ package com.moco.springboot.controller;
 import com.moco.springboot.mapper.UserMapper;
 import com.moco.springboot.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+//@RestController
+@Controller
 @RequestMapping("/user/*")
 public class UserController {
     @SuppressWarnings("all")
@@ -74,6 +76,7 @@ public class UserController {
 
     @RequestMapping(value = "/test6")
     public String test6(@ModelAttribute("kkk") User s){
+        userMapper.add(s.getUsername(),s.getPassword());
         return "test3";
     }
 }
