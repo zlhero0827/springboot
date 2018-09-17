@@ -2,6 +2,8 @@ package com.moco.springboot.controller;
 
 import com.moco.springboot.mapper.UserMapper;
 import com.moco.springboot.pojo.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
+    private final Logger LOG = LoggerFactory.getLogger(UserController.class);
     @SuppressWarnings("all")
     @Autowired
     UserMapper userMapper;
@@ -71,11 +74,13 @@ public class UserController {
 
     @RequestMapping(value = "/kkk")
     public String kkk(){
+        LOG.info("logback访问kkk页面");
         return "test2";
     }
 
     @RequestMapping(value = "/test6")
     public String test6(@ModelAttribute("kkk") User s){
+        LOG.info("logback访问test6页面");
         userMapper.add(s.getUsername(),s.getPassword());
         return "test3";
     }
