@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mock平台 - 1.0.1</title>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!-- Google Fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!-- TABLE STYLES-->
+    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link href="assets/js/jsonvalidate/jquery.numberedtextarea.css" rel="stylesheet"/>
+    <link href="assets/js/highlight/codemirror.css" rel="stylesheet"/>
+    <link href="assets/js/highlight/style.css" rel="stylesheet"/>
+    <link href="assets/js/highlight/dracula.css" rel="stylesheet"/>
+
+</head>
+<body>
+<div id="wrapper">
+    <!-- NAV -->
+    <div id="nav">
+
+    </div>
+    <!-- /. NAV SIDE  -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-header">
+                        Http Mock List
+                        <small></small>
+                    </h1>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div class="row">
+                <div class="col-md-6">
+
+                    <!--  Modals-->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            添加 http Mock
+                        </div>
+                        <div class="panel-body">
+                            <button id="addbtn" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#myModal">
+                                <i class=" fa fa-play "> 添加</i>
+                            </button>
+                            <button id="query" class="btn btn-primary"><i class="fa fa-info-circle "></i> 查询</button>
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Mock 信息</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="formdata">
+                                                <input id="id" name="id" class="form-control" style="display: none">
+                                                <div class="form-group">
+                                                    <label for="env"
+                                                           class="col-sm-2 control-label">环境:</label>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-group">
+                                                            <input id="env" name="env" class="form-control"
+                                                                   placeholder="env : 区分同一url路径不同环境">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="height: 50px"></div>
+                                                <div class="form-group">
+                                                    <label for="key"
+                                                           class="col-sm-2 control-label">路径:</label>
+                                                    <div class="col-sm-10">
+                                                        <input id="key" name="key" class="form-control"
+                                                               placeholder="path : 需要mock的url路径">
+                                                    </div>
+                                                </div>
+                                                <div style="height: 35px"></div>
+                                                <div class="form-group">
+                                                    <label for="json-src"
+                                                           class="col-sm-2 control-label">默认返回值:</label>
+                                                    <div class="col-sm-10">
+                                                    <textarea id="json-src" name="value"
+                                                              placeholder="在此输入json字符串或XML字符串..." class="form-control"
+                                                              style="height:203px;padding:0 10px 10px 10px;border:0;border-right:solid 1px #E5EBEE;border-bottom:solid 1px #eee;border-radius:0;resize: none; outline:none;font-size:10px;"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div style="height: 35px"></div>
+                                                <div class="form-group">
+                                                    <label for="expression"
+                                                           class="col-sm-2 control-label">表达式:</label>
+                                                    <div id="expression_div" class="col-sm-10">
+                                                    <textarea id="expression" name="expression"
+                                                              placeholder="在此输入表达式" class="form-control" rows="9"
+                                                    ></textarea>
+                                                    </div>
+                                                </div>
+                                                <div style="height: 35px"></div>
+                                            </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-12" id="right-box"
+                                                     style="height:180px;border-bottom:solid 0px #E5EBEE;border-radius:0;resize: none;overflow-y:scroll; outline:none;position:relative;font-size:12px;font-family:Menlo,Monaco,Consolas,'微软雅黑', monospace, Arial,sans-serif,'黑体';">
+                                                    <div id="line-num"
+                                                         style="background-color:#fafafa;padding:0px 8px;float:left;border-right:dashed 1px #E5EBEE;display:none;z-index:-1;color:#999;position:absolute;text-align:center;over-flow:hidden;">
+                                                        <div>0</div>
+                                                    </div>
+                                                    <div class="ro" id="json-target" style="padding:0px 25px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="height: 310px"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="close" type="button" class="btn btn-default"
+                                                    data-dismiss="modal"><i
+                                                    class="fa fa-close"> 关闭</i></button>
+                                            <button type="button" class="btn btn-primary"><i class="fa fa-save"> 保存</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modals-->
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            查询列表
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>环境</th>
+                                        <th>路径</th>
+                                        <th>返回值</th>
+                                        <th>操作</th>
+                                        <th>隐藏id</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <div id="footer">
+
+            </div>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- DATA TABLE SCRIPTS -->
+<script src="assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+<script src="assets/js/jsonvalidate/jquery.numberedtextarea.js"></script>
+<script src="assets/js/jsonvalidate/jquery.json.js"></script>
+<script src="assets/js/jsonvalidate/jsonlint.js"></script>
+<script src="assets/js/jsonvalidate/jquery.xml2json.js"></script>
+<script src="assets/js/custom-datatables.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/http.js"></script>
+<script src="assets/js/highlight/codemirror.min.js"></script>
+<script src="assets/js/highlight/clike.js"></script>
+<script src="assets/js/highlight/activeline.js"></script>
+<script src="assets/js/highlight/matchbracket.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        HttpCore("http/mock");
+    });
+</script>
+<!-- Custom Js -->
+<!--<script src="assets/js/custom-scripts.js"></script>-->
+
+</body>
+</html>
