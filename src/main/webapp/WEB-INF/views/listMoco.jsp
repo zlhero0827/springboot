@@ -32,8 +32,7 @@
                        value=${m.uri} > </td>
             <td><input class="inputWidth" name="req" type="text"
                        value=${m.req} > </td>
-            <td><input class="inputWidth" name="rsp" type="text"
-                       value="${m.rsp}" > </td>
+            <td><textarea name="rsp" wrap=soft>'${m.rsp}'</textarea></td>
             <td><input type="submit" name="Submit" value="确定修改"></td>
             <td><input name="id" type="hidden" value="${m.id}" > </td>
 
